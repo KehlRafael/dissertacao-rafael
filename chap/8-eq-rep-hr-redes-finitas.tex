@@ -1,0 +1,239 @@
+\chapter{Equação de replicação Hiper-racional em redes finitas}
+
+Nos capítulos anteriores nós introduzimos um modelo para jogos evolucionários em redes finitas \cite{madeo2015}, agora iremos modificar a função de pagamento \eqref{defPgtoHR} para que ela comporte jogos em redes finitas e, em sequência, iremos utilizar esse pagamento como base da equação de replicação \eqref{EqRepEGN}.
+
+Primeiramente, dado um perfil de estratégias $\BS{X}\in\Delta$ e um grafo $\G$ descrito por sua matriz de adjacências $A$, vamos relembrar a definição de $\BS{k_v}(\BS{X})$, o jogador virtual da vizinhança de $\BS{X}$.
+
+\begin{equation}
+    \BS{k_v}(\BS{X})=\frac{1}{d_v}\sum^N_{u=1} a_{v,u} \BS{x_u}
+\end{equation}
+
+Note que estamos usando a vizinhança ponderada por $d_v$, o grau do vértice $v$, ou seja, o nosso pagamento será do modelo $WA$. Para completar, dadas as matrizes de pagamento $B_v,\forall v\in\V$, e a matriz de preferências $\Rc$, definimos o pagamento esperado de $v$ ao usar a estratégia $\BS{x_v}$ como
+
+\begin{equation}
+\begin{split}
+    \label{defPgtoEGNHR}
+    \pi_v(\BS{x_v},\BS{X_{-v}}) &= r_{v,v}\BS{x_v} B_v \left(\frac{1}{d_v}\sum_{u=1}^N a_{v,u}\BS{x_u}\right)+ \left(\frac{1}{d_{v,r}}\sum_{u=1}^N r_{v,u} a_{v,u} \BS{x_u}B_u\right) \BS{x_v} \\
+    &= r_{v,v}\BS{x_v} B_v \BS{k_v}+ \left(\frac{1}{d_{v,r}}\sum_{u=1}^N r_{v,u}a_{v,u}\BS{x_u}B_u\right) \BS{x_v}
+\end{split}
+\end{equation}
+onde $d_{v,r}$ é o grau de preferências do vértice $v$, a soma dos pesos das arestas para os vértices que $v$ possui preferência. Por conveniência usaremos somente $\pi_v$ para denotar esse pagamento, pois a partir de agora esse será o pagamento utilizado em todos nossos cálculos, exceto quando explicitamente dito o contrário. Da mesma forma, iremos reutilizar a notação de $\rho_{v,s}=\pi_v(\BS{e_s},\BS{X_{-v}})$ e $\phi_v=\pi_v(\BS{x_v},\BS{X_v})$, o pagamento de $v$ ao usar a estratégia pura e $s$ e o pagamento esperado de $v$ ao usar $\BS{x_v}$, respectivamente.
+
+Finalmente, a equação de replicação hiper-racional para jogos em redes finitas é dada, em sua forma extensa, por
+\begin{equation}
+    \label{defEqRepHR}
+    \Dot{x}_{v,s}(t)= \!\begin{multlined}[t]
+        x_{v,s}(t)\left[r_{v,v}\BS{e_s} B_v \BS{k_v}(t)+ \left(\frac{1}{d_{v,r}}\sum_{u=1}^Nr_{v,u}a_{v,u} \BS{x_u}(t)B_u\right)\BS{e_s} \right. \\
+        \left. -r_{v,v}\BS{x_v}(t) B_v \BS{k_v}(t) -\left(\frac{1}{d_{v,r}}\sum_{u=1}^N r_{v,u}a_{v,u}\BS{x_u}(t)B_u\right) \BS{x_v}(t)\right]
+    \end{multlined}
+\end{equation}
+
+Para facilitar a leitura, podemos reorganizá-la da seguinte forma
+\begin{equation}
+    \Dot{x}_{v,s}(t)= \!\begin{multlined}[t]
+        x_{v,s}(t)\Biggl[ r_{v,v}\left(\BS{e_s} B_v \BS{k_v}(t)-\BS{x_v}(t) B_v \BS{k_v}(t)\right) \\
+        +\frac{1}{d_{v,r}}\sum_{u=1}^N r_{v,u}a_{v,u}
+        \left(\BS{x_u}(t) B_u \BS{e_s}-\BS{x_u}(t) B_u \BS{x_v}(t)\right)\Biggr]
+    \end{multlined}
+\end{equation}
+
+A primeira parte da equação é a mesma equação de replicação definida em $\eqref{EqRepEGN}$, enquanto a segunda parte é a diferença entre o pagamento percebido de $u$ por $v$ ao usar a estratégia $s$ e ao usar a estratégia $x_v$. Diremos que essas são, respectivamente, a parte pessoal e parte social da equação de replicação hiper-racional e denotamos
+\begin{equation}
+    \psi_{v,s}(t)=r_{v,v}\left(\BS{e_s} B_v \BS{k_v}(t)-\BS{x_v}(t) B_v \BS{k_v}(t)\right)
+\end{equation}
+como a parte pessoal da equação, e
+\begin{equation}
+    \gamma_{v,s}(t)=\frac{1}{d_{v,r}}\sum_{u=1}^N r_{v,u}a_{v,u}
+                    \left(\BS{x_u}(t) B_u \BS{e_s}-\BS{x_u}(t) B_u \BS{x_v}(t)\right)
+\end{equation}
+como a parte social da equação. Assim, a nossa equação de replicação pode ser apresentada na sua forma reduzida como
+\begin{equation}
+    \label{EqReduzida}
+    \Dot{x}_{v,s}(t)=x_{v,s}(t)\left(\psi_{v,s}(t)+\gamma_{v,s}(t)\right)
+\end{equation}
+
+A seguir, iremos demonstrar algumas importantes propriedades da equação $\eqref{defEqRepHR}$ e as hipóteses necessárias para que ela seja equivalente às demais equações de replicação apresentadas neste trabalho.
+
+% -- % -- % -- %
+
+\section{Existência e unicidade da solução}
+
+Nosso objetivo é provar que a equação $\eqref{defEqRepHR}$ satisfaz as hipóteses do teorema \ref{teoExistUnic} e, portanto, possui uma única solução para cada condição inicial dada. Precisamos apenas mostrar que $\eqref{defEqRepHR}$ é Lipschitz, pois pela compacidade de $\Delta_M$ teremos que $\eqref{defEqRepHR}$ também é contínua e limitada em $\Delta_M$. Para isso, dados $\BS{x},\BS{y}\in\Delta$, defina $F_v(\BS{x})=\left[ \dot{\BS{x}}_{v,1} \dots \dot{\BS{x}}_{v,s} \dots \dot{\BS{x}}_{v,M}\right]^T$, para todo $v\in\V$ e $s\in S$, e a função $c(t)=\BS{y}+t(\BS{x}-\BS{y})$ de forma que, usando o teorema fundamental das integrais de linha \ref{teoGradiente}, obtemos
+\begin{equation}
+    F_v(\BS{x})-F_v(\BS{y})=F_v(c(1))-F_v(c(0))=\int_0^1 \nabla F_v(c(t)) \; (\BS{x}-\BS{y}) \; dt , \forall v\in\V
+\end{equation}
+Assim, temos
+\begin{equation}
+    \label{ineqLipschitz}
+    |F_v(\BS{x})-F_v(\BS{y})|\leq\int_0^1 \|\nabla F_v(c(t))\| \; \|\BS{x}-\BS{y}\| \; dt, \forall v\in\V
+\end{equation}
+onde
+\begin{equation}
+    \nabla F_v(\BS{x})=\left[ \pdv{F_v}{x_{v,1}} \dots \pdv{F_v}{x_{v,s}} \dots \pdv{F_v}{x_{v,M}} \right]^T
+\end{equation}
+
+Agora vamos analisar as entradas de $\nabla F_v(\BS{x})$ para tentar limitar o valor de seu módulo e encontrar a constante de Lipschitz $L$ para a equação de replicação hiper-racional. Assim, para todo $s\in S$ e $v\in\V$, onde $b_{v,s,t}$ é a entrada $(i,j)$ da matriz de pagamentos $B_v$, temos
+\begin{equation}
+    \left\|\pdv{F_v}{x_{v,s}}\right\| = \!\begin{multlined}[t]
+        \Biggl| \frac{r_{v,v}}{d_v} \left( 
+        \sum^M_{l=1}\sum^N_{u=1} a_{v,u}b_{v,s,l}x_{u,l} - \sum^M_{l=1}\sum^M_{k=1}\sum^N_{u=1} a_{v,u}x_{v,k}b_{v,k,l}x_{u,l} \right) \\
+        + \frac{1}{d_{v,r}}\sum^N_{u=1}r_{v,u}a_{v,u}\left( \sum^M_{k=1}x_{u,k}b_{u,k,s} - \sum^M_{l=1}\sum^M_{k=1}x_{u,k}b_{u,k,l}x_{v,l}\right) \\
+        - \frac{r_{v,v}}{d_v}\left( \sum^M_{l=1}\sum^N_{u=1} a_{v,u}x_{v,s}^2b_{v,s,l}x_{u,l} \right)  \\
+        - \frac{1}{d_{v,r}}\sum^N_{u=1}r_{v,u}a_{v,u}
+        \left( \sum^M_{k=1}x_{u,k}b_{u,k,s}x_{v,s}^2\right) \Biggr|
+    \end{multlined}
+\end{equation}
+Pelas propriedades do módulo, temos
+\begin{equation}
+\begin{split}
+    \left\|\pdv{F_v}{x_{v,s}}\right\| \leq &
+    \left| \frac{r_{v,v}}{d_v}\sum^M_{l=1}\sum^N_{u=1} a_{v,u}b_{v,s,l}x_{u,l} \right| + \left| \frac{r_{v,v}}{d_v}\sum^M_{l=1}\sum^M_{k=1}\sum^N_{u=1} a_{v,u}x_{v,k}b_{v,k,l}x_{u,l} \right| \\
+    &+ \left|\frac{1}{d_{v,r}}\sum^N_{u=1} \sum^M_{k=1} r_{v,u}a_{v,u} x_{u,k}b_{u,k,s} \right| \\&+ 
+    \left|\frac{1}{d_{v,r}}\sum^N_{u=1}\sum^M_{l=1}\sum^M_{k=1} r_{v,u}a_{v,u}x_{u,k}b_{u,k,l}x_{v,l}\right| \\&+
+    \left|\frac{r_{v,v}}{d_v} \sum^M_{l=1}\sum^N_{u=1} a_{v,u}x_{v,s}^2b_{v,s,l}x_{u,l} \right| \\
+    &+ \left| \frac{1}{d_{v,r}}\sum^N_{u=1}\sum^M_{k=1} r_{v,u}a_{v,u}x_{u,k}b_{u,k,s}x_{v,s}^2\right|
+\end{split}
+\end{equation}
+Para simplificar, tome $b=\max\{b_{v,k,l}\},\forall v\in\V$ e $k,l\in S$, e lembre-se que $\BS{x_v}\in\Delta_M$, portanto $\sum_{k=1}^M x_{v,s}=1,\forall v\in\V$. Além disso, assumimos que $r_{v,u}\in[0,1]$ para todo $v,u\in\V$, porém o resultado ainda vale para valores em $[-1,1]$, basta tomar o módulo de cada $r_{v,u}$. Então podemos reescrever a equação acima da seguinte maneira,
+\begin{equation}
+    \left\|\pdv{F_v}{x_{v,s}}\right\| \leq \!\begin{multlined}[t]
+        \left| r_{v,v} N b \right| +
+        \left|r_{v,v} N b \right| +
+        \left|1-r_{v,v}\right| \left| N b \right| \\ + 
+        \left|1-r_{v,v}\right| \left| N b \right| +
+        \left|r_{v,v} N b x_{v,s}^2 \right|
+        +  \left|1-r_{v,v}\right| \left| N b x_{v,s}^2\right|
+    \end{multlined}
+\end{equation}
+Por fim, utilizando o fato de que $x_{v,s}^2\leq 1$, concluímos que
+\begin{equation}
+\begin{split}
+    \left\|\pdv{F_v}{x_{v,s}}\right\| &\leq \!\begin{multlined}[t]
+        \left| r_{v,v} N b \right| +
+        \left|r_{v,v} N b \right| +
+        \left|1-r_{v,v}\right| \left| N b \right| \\+ 
+        \left|1-r_{v,v}\right| \left| N b \right| +
+        \left|r_{v,v} N b \right| +
+        \left|1-r_{v,v}\right| \left| N b\right|
+    \end{multlined}\\
+    &\leq 3 N b
+\end{split}
+\end{equation}
+Com isso, podemos limitar o módulo de $\nabla F_v(\BS{x})$ da seguinte forma
+\begin{equation}
+    \left\|\nabla F_v(\BS{x})\right\| \leq \sqrt{9MN^2b^2} = 3 N b \sqrt{M} = L
+\end{equation}
+
+Finalmente chegamos no resultado desejado, pois ao substituir o resultado acima na equação $\eqref{ineqLipschitz}$, concluímos
+\begin{equation}
+    \|F_v(x)-F_v(y)\|\leq L \int_0^1 \|x-y\| \; dt = L\|x-y\|,\forall v\in\V
+\end{equation}
+Portanto, a equação $\eqref{defEqRepHR}$ é de Lipschitz e satisfaz todas as condições do teorema \ref{teoExistUnic}.
+
+% -- % -- % -- %
+
+\section{Invariância de $\Delta_M$}
+
+Suponha que $\BS{x_v}(t)\in\Delta_M$ é a única solução do problema $\eqref{EqRepEGN}$ obtida ao tomar $c_v\in\Delta_M$. Suponha também que existe um instante $t_1$ tal que $x_{v,s}(t_1)<0$. Pela continuidade de todas as componentes da solução, temos que existe um $t_2<t_1$ tal que $x_{v,s}(t_2)=0$. Pela equação $\eqref{defEqRepHR}$, temos que $\Dot{x}_{v,s}(t_2)=0$ e, portanto, $x_{v,s}(t_3)=0,\forall t_3>t_2$. Pela unicidade da solução, concluímos que não há $t_1$ tal que $x_{v,s}(t_1)<0$ e, portanto
+\begin{equation}
+\label{invariancia1}
+    \BS{x_v}(0)\in\Delta_M \Rightarrow \BS{x_v}(t)\geq 0,\forall t>0
+\end{equation}
+
+Note que a variação total na distribuição de estratégias de um jogador $v\in\V$ é nula, pois $\sum_{s=1}^M x_{v,s}(t)=1$. De fato,
+\begin{equation}
+    \sum^M_{s=1}\Dot{x}_{v,s}= \!\begin{multlined}[t]
+        \sum^M_{s=1}x_{v,s}\Biggl[
+        r_{v,v}\BS{e_s} B_v \BS{k_v}+\left(\frac{1}{d_{v,r}}\sum_{u=1}^N 
+        r_{v,u}a_{v,u}\BS{x_u} B_u \right) \BS{e_s} \\
+        -r_{v,v}\BS{x_v} B_v \BS{k_v}-\left(\frac{1}{d_{v,r}}\sum_{u=1}^N 
+        r_{v,u}a_{v,u}\BS{x_u} B_u\right) \BS{x_v}
+        \Biggr]
+    \end{multlined}
+\end{equation}
+
+Que pode ser simplificada da seguinte maneira
+\begin{equation}
+    \sum^M_{s=1}\Dot{x}_{v,s}= \!\begin{multlined}[t]
+        r_{v,v}\left[\sum^M_{s=1}x_{v,s}\BS{e_s} B_v \BS{k_v}-\BS{x_v} B_v \BS{k_v} \sum^M_{s=1}x_{v,s}\right]\\
+        +\frac{1}{d_{v,r}}\sum_{u=1}^N r_{v,u}a_{v,u}\left[\BS{x_u} B_u \sum^M_{s=1} x_{v,s} \BS{e_s}
+        -x_u^TB_u x_v\sum^M_{s=1}x_{v,s}
+        \right]
+    \end{multlined}
+\end{equation}
+
+Finalmente, temos
+\begin{equation}
+    \sum^M_{s=1}\Dot{x}_{v,s}= \!\begin{multlined}[t]
+        r_{v,v}\left[\BS{x_v} B_v \BS{k_v} - \BS{x_v} B_v \BS{k_v}\right] \\
+        +\frac{1}{d_{v,r}}\sum_{u=1}^N r_{v,u}a_{v,u}\left[\BS{x_u} B_u \BS{x_v}
+        -\BS{x_u} B_u \BS{x_v}
+        \right] = 0
+    \end{multlined}
+\end{equation}
+
+Isso significa que
+\begin{equation}
+\label{invariancia2}
+    \sum^M_{s=1}x_{v,s}(t)=\sum^M_{s=1}x_{v,s}(0),\forall t>0,\forall v\in\V
+\end{equation}
+
+Portanto, tomando $\BS{x}_v(0)\in\Delta_M$ e usando os resultados $\eqref{invariancia1}$ e $\eqref{invariancia2}$, concluímos que
+\begin{equation}
+    \label{invariancia}
+    \forall v\in\V:\BS{x_v}(0)\in\Delta_M\Rightarrow \BS{x_v}(t)\in\Delta_M, \forall t>0
+\end{equation}
+
+Em outras palavras, se a condição inicial do problema for uma distribuição de estratégias, então $\BS{x_v}(t)$ será uma distribuição de estratégias $\forall t>0$.
+
+% -- % -- % -- %
+
+\section{Hiper-equilíbrios são pontos fixos da equação de replicação hiper-racional em grafos}
+
+Suponha que o perfil de estratégias $\BS{X^*}$ é um hiper-equilíbrio, como definido em \ref{defHiperEq}, teremos
+\begin{equation}
+\begin{split}
+    \Dot{x}_{v,s}^*(t)&=x_{v,s}^*(t)\left(\rho_{v,s}^*(t)-\phi_v^*(t)\right)\\
+                      &=x_{v,s}^*(t)\left(\pi_v(\BS{e_s},\BS{x^*_{-v}}(t))
+                      -\pi_v(\BS{x^*_v}(t),\BS{x^*_{-v}}(t))\right)\\
+                      &\leq 0
+\end{split}
+\end{equation}
+
+Usando o resultado $\eqref{invariancia}$, concluímos que 
+\begin{equation}
+    \Dot{x}_{v,s}^*=0,\forall s\in S,\forall v\in\V
+\end{equation}
+
+Assim, todo hiper-equilíbrio é um ponto fixo da equação de replicação hiper-racional em grafos.
+
+% -- % -- % -- %
+
+\section{Estratégias puras são pontos fixos da equação de replicação hiper-racional em grafos}
+
+Suponha que $\BS{x_v}(t)=\BS{e_q}$. Então, $\rho_{v,q}(t)=\phi_v(t)$ e
+\begin{equation}
+    \Dot{x}_{v,q}(t)=x_{v,q}(t)\left(\rho_{v,q}(t)-\phi_v(t)\right)
+                      =1\cdot 0 = 0
+\end{equation}
+
+Além disso, $\forall s\neq q$, temos
+\begin{equation}
+    \Dot{x}_{v,s}(t)=x_{v,s}(t)\left(\rho_{v,s}(t)-\phi_v(t)\right)
+                      =0\cdot \left(\rho_{v,s}(t)-\phi_v(t)\right) = 0
+\end{equation}
+
+Logo, se $\BS{x_v}(t)$ é uma estratégia pura, concluímos que $\Dot{x}_{v,s}(t)=0,\forall s\in S$ e, portanto, um ponto fixo da equação de replicação hiper-racional em grafos.
+
+% -- % -- % -- %
+
+\section{A equação de replicação como caso especial}
+
+Basta tomarmos $\Rc=I^{\N\times\N}$, a matriz identidade de $\R^{\N\times\N}$. Assim, a equação $\eqref{defEqRepHR}$ será dada somente por
+\begin{equation}
+    \label{EqGrafo}
+    \Dot{x}_{v,s}(t)=x_{v,s}(t)\left(\BS{e_s} B_v \BS{k_v}(t)
+                                    - \BS{x_v}(t) B_v \BS{k_v}(t)\right)
+\end{equation}
+
+A equação $\eqref{EqGrafo}$ é a equação de replicação em grafos, que possui a equação de replicação como caso especial, como vimos no teorema \ref{TeoEquivalenciaEGN}.

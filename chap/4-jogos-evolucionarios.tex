@@ -1,0 +1,101 @@
+\chapter{Teoria dos Jogos Evolucionários}
+
+A teoria dos jogos evolucionários é uma aplicação da teoria dos jogos em populações que evoluem através de uma dinâmica de replicação. Na dinâmica do replicador \cite{madeo2015,hofbauer_sigmund_1998}, jogadores são membros de uma grande população, onde indivíduos são caracterizados pelo seu fenótipo, que determina qual estratégia o indivíduo irá usar dentre as $M$ disponíveis. Assim, cada elemento $\BS{x}\in\Delta_M$ é interpretado como um estado da população, onde $x_s$ é a proporção de indivíduos com o fenótipo da estratégia $s\in\BS{S}$. Os indivíduos são emparelhados de maneira aleatória a cada instante e o pagamento de cada interação representa a aptidão do indivíduo, que pode ser interpretada como sua capacidade reprodutiva. Assim, quanto mais apto é o indivíduo, maior o número de descendentes que ele irá gerar e que irão herdar o seu fenótipo.
+
+A dinâmica de replicação é um modelo que simula a seleção natural \cite{madeo2015}. Os indivíduos com pagamento maior do que o pagamento médio da população irão se reproduzir com maior frequência e, portanto, a parcela da população que carrega seu fenótipo irá aumentar. Da mesma forma, a parcela de fenótipos com menor aptidão irá diminuir com o passar do tempo. Note que a aptidão depende do pagamento recebido pelo indivíduo e do pagamento médio da população. Essa dependência da distribuição de estratégias promove a adaptação a cenários dinâmicos e possibilita a ocorrência de fenômenos interessantes, como caos e limites cíclicos \cite{hofbauer_sigmund_1998}. A modelagem desse processo em tempo contínuo é feito através de uma equação diferencial ordinária, chamada de equação de replicação, que iremos apresentar na próxima seção.
+
+% -- % -- % -- %
+
+\section{Equação de Replicação}
+
+Assuma a existência de uma grande população homogênea, com replicadores de $M$ diferentes fenótipos com frequências $x_1,x_2,\dots,x_M$. O conjunto de todos fenótipos é denotado por $\BS{S}=\{s_1,s_2,\dots,s_M\}$ e associamos o fenótipo $s_k$ ao vetor $e_k$. Para facilitar a leitura, dado um fenótipo $s\in\BS{S}$, denotamos por $e_s$ o $e_k$ associado a $s$. A aptidão $\pi_s$ dos replicadores com fenótipo $s$ em uma população com distribuição $\BS{x}\in\Delta_M$ é dada por
+\begin{equation}
+    \pi_s(\BS{x})=\BS{e_s} B \BS{x},
+\end{equation}
+onde $\BS{e_s}$ é o vetor unitário associado ao fenótipo $s$, $B$ é a matriz de pagamentos do jogo evolucionário, cuja entrada $b_{i,j}$ representa o pagamento do jogador ao jogar $s_i$ contra $s_j$, e $\BS{x}$ é o vetor de frequências da população. Assim, definimos aptidão média da população por
+\begin{equation}
+    \phi(\BS{x})=\sum_{i=1}^M x_i\pi_i(\BS{x}).
+\end{equation}
+
+Finalmente, obtemos a equação de replicação, dada por
+\begin{equation}
+    \label{eqRep}
+    \dot{x}_s=x_s\left(\pi_s(\BS{x})-\phi(\BS{x})\right),
+\end{equation}
+onde $\dot{x}_s$ é a taxa de variação no tempo da parcela $x_s$ da população. Note que, dada uma distribuição inicial $\BS{x}\in\Delta_M$, qualquer outra distribuição da população obtida através da equação de replicação também estará contida em $\Delta_M$, pois
+\begin{equation}
+\begin{split}
+    \label{invEqRep}
+    \sum_{s=1}^M\dot{x}_s&=\sum_{s=1}^M x_s(\pi_s(\BS{x})-\phi(\BS{x})) \\
+    &= \sum_{s=1}^M x_s\pi_s(\BS{x})-\phi(\BS{x})\sum_{s=1}^M x_s \\
+    &= \phi(\BS{x})-\phi(\BS{x})=0.
+\end{split}
+\end{equation}
+Logo, a equação de replicação é invariante sobre $\Delta_M$.
+
+Nesse modelo, todas interações são simétricas, pois os jogadores possuem a mesma matriz de pagamentos, diferindo apenas pela estratégia que utilizam. Em interações biológicas ou econômicas, por exemplo, existem subgrupos dentro da população, como a interação entre diferentes espécies ou empresas competindo em um mesmo mercado. A diferença entre uma população homogênea e uma outra dividida em subgrupos pode ser vista na figura \ref{fig:dif_populacao}(a)-(b), onde um replicador é representado pela forma correspondente à sua estratégia pura. Em \ref{fig:dif_populacao}(b), as subpopulações que possuem a mesma função de pagamentos são representadas por uma cor e, nesse caso, as interações ocorrem apenas entre indivíduos de subpopulações diferentes.
+
+Um jogo com $N\geq 2$ subpopulações de replicadores pode ser modelado como um jogo entre $N$ jogadores, cada um retirado de maneira aleatória de cada uma das subpopulações. Então, denotamos por $x_{v,s}$ a parcela da subpopulação $v$ que possui o fenótipo da estratégia $s$ e definimos a aptidão desta parcela como
+\begin{equation}
+    \label{defPgtoEvolucionario}
+    \pi_{v,s}(\BS{X})=\BS{e_s} B_v \left(\frac{1}{N-1}\sum_{\substack{k=1\\k\neq v}}^N \BS{x_k}\right)
+\end{equation}
+onde $\BS{X}=(\BS{x_1},\dots,\BS{x_N})\in\Delta$ é o perfil de estratégias das $N$ subpopulações, $\BS{e_s}$ é o vetor unitário de $\R^M$ cuja entrada $s$ é igual a $1$, $B_v$ é a matriz de pagamentos da subpopulação $v$ e $\BS{x_k}$ é a distribuição de estratégias da subpopulação $k$. Como os replicadores estão inseridos em uma subpopulação, a aptidão média é medida para cada subpopulação $v$, e é definida como
+\begin{equation}
+    \label{defPgtoMedioEvolucionario}
+    \phi_{v}(\BS{X})=\sum^M_{s=1}x_{v,s}\pi_{v,s}(\BS{X})
+\end{equation}
+
+Por fim, obtemos a equação de replicação multipopulacão \cite{weibull1997evolutionary}, dada por
+\begin{equation}
+    \label{eqRepMultipop}
+    \dot{x}_{v,s}(\BS{X})=x_{v,s}\left(\pi_{v,s}(\BS{X})-\phi_{v}(\BS{X})\right),
+\end{equation}
+onde $\dot{x}_{v,s}$ é a taxa de variação da parcela de indivíduos com fenótipo $s$ na subpopulação $v$. De maneira análoga à $\eqref{invEqRep}$ podemos mostrar que a equação de replicação multipopulação é invariante em $\Delta$.
+
+A equação de replicação nos diz que a parcela de indivíduos com fenótipo $s$ irá crescer quando $\pi_{v,s}>\phi_v$, diminuir quando $\pi_{v,s}<\phi_v$ e se manter estável quando $\pi_{v,s}=\phi_v$. Como o aptidão de cada fenótipo e a aptidão média da população depende da distribuição de estratégias atual na população, a taxa de reprodução de cada fenótipo depende do quão adaptado ele está ao meio em que está inserido.
+
+% -- % -- % -- %
+
+\section{Equilíbrio de Nash e Estados Evolucionariamente Estáveis}
+
+Na teoria dos jogos evolucionária, um equilíbrio de Nash é uma distribuição da população na qual nenhum fenótipo possui vantagem sobre os demais e, portanto, a distribuição se mantém estável. Antes de definirmos formalmente o equilíbrio de Nash, precisamos definir uma outra função. Assim, dado uma matriz de pagamentos $B$ e duas distribuições populacionais $\BS{x},\BS{y}\in\Delta_M$, definimos
+\begin{equation}
+    \pi(\BS{x},\BS{y})=\BS{x}B\BS{y}
+\end{equation}
+como a aptidão da população $\BS{x}$ ao jogar contra a população $\BS{y}$. Com isso, podemos definir o equilíbrio de Nash da seguinte maneira.
+
+\begin{definition}
+    \label{eqNashJogosEvo}
+    Dizemos que a distribuição populacional
+    \begin{equation*}
+        \BS{x^*}=(\BS{x}^*_{1},\BS{x}^*_{2},\dots,\BS{x}^*_{M})\in\Delta_M
+    \end{equation*}
+    é um equilíbrio de Nash se
+    \begin{equation*}
+        \pi(\BS{x^*},\BS{x^*})\geq \pi(\BS{x},\BS{x^*})
+    \end{equation*}
+    para todo $\BS{x}\in\Delta_{M}$. Se a desigualdade for estrita, dizemos que $\boldsymbol{x^*}$ é um equilíbrio de Nash estrito.
+\end{definition}
+
+Além do equilíbrio de Nash, nos interessa saber se o estado da população é evolucionariamente estável, ou seja, se a população é resistente à invasão por alguma pequena população de mutantes que mude o atual equilíbrio. Um estado evolucionariamente estável é definido a seguir.
+
+\begin{definition}
+    \label{defESS}
+    Dizemos que a distribuição populacional
+    \begin{equation*}
+        \BS{x^*}=(\BS{x}^*_{1},\BS{x}^*_{2},\dots,\BS{x}^*_{M})\in\Delta_M
+    \end{equation*}
+    é um estado evolucionariamente estável (ESS) se
+    \begin{equation*}
+        \pi(\BS{x^*},\BS{x^*}) \geq \pi(\BS{x},\BS{x^*}),
+    \end{equation*}
+    para todo estado $\BS{x}\in\Delta_M,\BS{x}\neq\BS{x^*}$ e, caso haja igualdade, teremos
+    \begin{equation*}
+        \pi(\BS{x^*},\BS{x}) \geq \pi(\BS{x},\BS{x}).
+    \end{equation*}
+\end{definition}
+
+Em outras palavras, $\BS{x^*}$ é um ESS quando ele é um equilíbrio de Nash e é, também, a melhor resposta para qualquer competidor que possua $\pi(\BS{x^*},\BS{x^*}) = \pi(\BS{x},\BS{x^*})$. Note que todo equilíbrio de Nash estrito é um ESS, mas nem todo ESS é um equilíbrio de Nash estrito.
+
+Para a jogos evolucionários muiltipopulação a definição de equilíbrio de Nash é equivalente à definição para jogos entre $N$ jogadores com estratégias mistas, dada em $\eqref{DefEqNashClassico}$. Não há consenso para a definição de estados evolucionariamente estáveis em multipopulações \cite{weibull1997evolutionary} e foi demonstrado que as alternativas existentes são equivalentes ao equilíbrio de Nash estrito.
