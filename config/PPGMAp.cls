@@ -515,7 +515,7 @@
 				\setlength{\parindent}{0pt}
 				\if \@doctype 2 Disserta\c c\~ao\else
 				\if \@doctype 1 Qualifica\c c\~ao\else
-				Tese\fi\fi: Matem\' atica Aplicada: \@area, \\
+				Tese\fi\fi: Matem\' atica Aplicada, \@area \\
 				\@keyworda, \@keywordb, \@keywordc, \@keywordd
 				\par
 				\vskip 4mm

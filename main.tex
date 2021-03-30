@@ -134,13 +134,13 @@
 %
 % Titulo e data da defesa:
 %
-\title{Larousse Gastronomique}
-\date{novembro}{2002}
+\title{Jogos Evolucionários em Redes Finitas com Jogadores Hiper-Racionais}
+\date{abril}{2021}
 
 %
 % Linha de pesquisa:
 %
-\area{Análise Aplicada}
+\area{Sistemas Não-Lineares, Biomatemática}
 
 %
 % Palavras-chave:
@@ -149,19 +149,19 @@
 % " Keywords:
 %	  {keyword 1}{keyword 2}{keyword 3}{keyword 4} "
 %
-\keywords{Dissertação}{Tese}{Mestrado}{Doutorado}
+\keywords{Teoria dos Jogos}{racionalidade}{jogos evolucionários}{grafos}
 
 %
 % Autor:
 % 	[genero<opcional>]{nome}{sobrenome}
 %
-\author[o]{Hannibal}{Lecter}
+\author[o]{Rafael Jacobs}{Kehl}
 
 %
 % Orientador (e, se ha, co-orientador):
 % 	[genero<opcional>]{tratamento}{nome}{sobrenome}
 %
-\advisor{Prof. Dr.}{Nome}{Sobrenome}
+\advisor{Prof. Dr.}{Jean Carlo Pech de}{Moraes}
 %\coadvisor[a]{Profa. Dra.}{Nome}{Sobrenome}
 
 %
@@ -181,7 +181,7 @@
 % Coordenador(a) do PPGMAp:
 % 	[genero<opcional>]{tratamento}{primeiro nome}{ultimo nome}
 %
-\PPGMApcoord{Prof. Dr.}{Ezequia}{Sauter}
+\PPGMApcoord{Prof. Dr.}{Lucas da Silva}{Oliveira}
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
@@ -318,12 +318,16 @@
 
 %	Resumo <ambiente>:
 	\begin{resumo}
-		\lipsum[2-4]
+		Este trabalho propõe um novo modelo matemático para dinâmicas evolucionárias em redes finitas. Esse modelo estende a equação de replicação em redes finitas para jogadores hiper-racionais, que são capazes de considerar o benefício ou prejuízo dos demais jogadores na escolha de sua estratégia. Este processo é feito através da introdução de um novo parâmetro chamado matriz de preferências, que traz informações sobre a importância que um jogador dá para o benefício ou prejuízo de um outro jogador. A rede é modelada através de um grafo onde cada vértice do grafo representa uma subpopulação de replicadores hiper-racionais com mesma preferência que, a cada instante, interage com uma subpopulação vizinha e recebe um pagamento de acordo com suas preferências por si e por seus vizinhos. A equação obtida não depende de hipóteses sobre as matrizes de pagamento, topologia do grafo ou preferências dos jogadores. Os equilíbrios de Nash e o comportamento dos agentes hiper-racionais em diferentes jogos e grafos são discutidos. Também é feita uma comparação entre jogadores racionais e hiper-racionais para alguns jogos e grafos.
+		
+		\noindent \textbf{Palavras-chave:} Sistemas Não-Lineares; Biomatemática; Jogos Evolucionários.
 	\end{resumo}
 
 %	Abstract <ambiente>:
 	\begin{abstract}
-		\lipsum[5-7]
+	    This work proposes a new mathematical model for evolutionary dynamics in finite networks. This model extends the networked replicator equation to hyper-rational players, which are capable of considering the profit or loss of others when choosing their strategy. This is made by adding a new parameter called matrix of preferences, that holds information on how much a player values the profit or loss of another player. The network is represented by a graph where each vertex is interpreted as a subpopulation of hyper-rational replicators with the same preferences engaged at each time instant in 2-player games with a neighboring subpopulation, receiving a payoff according to their preferences. The obtained equation does not depends on any hypothesis over the game payoff matrices, graph topology or player preferences. Nash equilibria and the behavior of hyper-rational players are discussed. A comparison between rational and hyper-rational players in some games and graphs is also made.
+		
+		\noindent \textbf{Keywords:} Nonlinear Systems; Graph Theory; Evolutionary Games.
 	\end{abstract}
 
 %
@@ -336,31 +340,34 @@
 %
 
 % Introdução
-\include{./chap/1-intro}
+\include{./chap/a-intro}
 
 % Resultados Preliminares
-\include{./chap/2-resultados-preliminares}
+\include{./chap/b-resultados-preliminares}
 
 % Teoria dos Jogos Clássica
-\include{./chap/3-teoria-jogos-classica}
+\include{./chap/c-teoria-jogos-classica}
 
 % Teoria dos Jogos evolucionarios
-\include{./chap/4-jogos-evolucionarios}
+\include{./chap/d-jogos-evolucionarios}
 
 % Teoria dos Jogos evolucionarios em Redes Finitas
-\include{./chap/5-jogos-evolucionarios-redes}
+\include{./chap/e-jogos-evolucionarios-redes}
 
 % Hiper-racionalidade
-\include{./chap/6-hiper-racionalidade}
+\include{./chap/f-hiper-racionalidade}
 
 % Jogos com Jogadores Hiper-racionais
-\include{./chap/7-jogos-hiper-racionais}
+\include{./chap/g-jogos-hiper-racionais}
 
 % Equação de replicação Hiper-racional em redes finitas
-\include{./chap/8-eq-rep-hr-redes-finitas}
+\include{./chap/h-eq-rep-hr-redes-finitas}
 
-% O Jogo do Triângulo Amoroso
-\include{./chap/9-triangulo-amoroso}
+% O jogo do Triângulo Amoroso
+\include{./chap/i-colegas-quarto}
+
+% Comparação entre modelos
+\include{./chap/j-comparacao-modelos}
 
 %
 %	Referencias bibliograficas:

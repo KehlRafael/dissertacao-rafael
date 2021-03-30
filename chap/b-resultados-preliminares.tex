@@ -1,0 +1,346 @@
+\chapter{Resultados preliminares}
+
+Neste capítulo nós desenvolveremos a teoria clássica de equações diferenciais para resolver o problema da existência e unicidade da solução de equações diferenciais de primeira ordem. Dado que este é um tópico conhecido, vamos seguir a estrutura de \cite{milton2017} para que possamos obter resultados necessários para algumas demonstrações que faremos no decorrer deste trabalho. Para começar, vamos fazer algumas definições e demonstrar o teorema do ponto fixo de Banach para contrações.
+
+\begin{definition}
+    \label{seqCauchy}
+    Se $E$ é um espaço métrico e $d:E\times E\to\R$ sua métrica, dizemos que uma sequência $(x_n)_{n\in\N}$ é uma sequência de Cauchy se, $\forall\epsilon>0$, $\exists n_0$ tal que $\forall n,m \geq n_0$ temos
+    \begin{equation}
+        d(x_n,x_m) < \epsilon
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    \label{defEspacoCompleto}
+    Diz-se que o espaço métrico $E$ é completo quando toda sequência de Cauchy em $E$ é convergente.
+\end{definition}
+
+\begin{theorem}[Teorema do ponto fixo de Banach para contrações]
+    \label{teoBanach}
+    Sejam $(E, d)$ um espaço métrico completo e $T:E\to E$ uma contração, ou seja, existe uma constante $0\leq c < 1$, tal que, para quaisquer $x,y\in E$, temos
+    \begin{equation}
+        d(T x, T y) \leq cd(x, y).
+    \end{equation}
+Então existe um único $\Bar{x}\in E$ tal que $T\Bar{x} = \Bar{x}$.
+\end{theorem}
+\begin{proof}[Dem.:] 
+    Primeiro iremos demonstrar a existência desse $\Bar{x}$ que é ponto fixo de $T$. Para tal, seja $x_1\in E$ e defina a sequência $x_{n+1}=Tx_n,n\in\N$. Note que $(x_n)_{n\in\N}$ é uma sequência de Cauchy, pois, para $n>1$, temos
+    \begin{equation}
+        d(x_n, T x_{n+1}) = d(Tx_{n-1}, T x_n)\leq cd(x_{n-1}, x_n)
+    \end{equation}
+    e por indução em $n$, obtemos
+    \begin{equation}
+        d(x_n, T x_{n+1})\leq c^{n-1}d(x_1, x_2)
+    \end{equation}
+    
+    Então, para $1\leq n < m$, temos
+    \begin{equation}
+    \begin{split}
+        d(x_n,x_m) &\leq d(x_n,x_{n+1})+\dots+d(x_{m-1},x_m) \\ 
+        &\leq c^{n-1}d(x_1, x_2)+\dots+c^{m-2}d(x_1, x_2) \\ 
+        &\leq c^{n-1}d(x_1,x_2)(1+c+\dots+c^{m-n-1}) \\ 
+        &\leq \frac{c^{n-1}d(x_1, x_2)}{1-c}
+    \end{split}
+    \end{equation}
+    e, como $c^n\to 0$, segue que $(x_n)$ é uma sequência de Cauchy. Logo, como $E$ é completo, existe $\Bar{x}\in E$ tal que $x_n\to\Bar{x}$. Além disso, perceba que
+    \begin{equation}
+        d(T\Bar{x},x_{n+1}) = d(T\Bar{x},Tx_n) \leq cd(\Bar{x}, x_n)
+    \end{equation}
+    e, como $d(\Bar{x},x_n)\to 0$, segue que $d(T\Bar{x},x_n)\to 0$, logo $x_n\to T\Bar{x}$. Portanto, pela unicidade do limite das sequências de Cauchy, temos que $T\Bar{x}=\Bar{x}$.
+    
+    Para demonstrar a unicidade do ponto fixo $\Bar{x}$, assuma que existe um $\Bar{y}\in E,\Bar{y}\neq\Bar{x}$ tal que $T\Bar{y}=\Bar{y}$. Então,
+    \begin{equation}
+        0 < d(\Bar{x},\Bar{y}) = d(T\Bar{x},T\Bar{y}) \leq cd(\Bar{x},\Bar{y})
+    \end{equation}
+    e, portanto, $c\geq 1$, o que contradiz nossa hipótese.
+\end{proof}
+
+Agora iremos enunciar alguns teoremas clássicos que serão utilizados em demonstrações no decorrer deste trabalho. As demonstrações de todos eles podem ser encontradas em \cite{rudin1976principles}.
+
+\begin{definition}
+    Uma curva $C$ descrita pela função $c(t)$ é chamada lisa se $c'(t)$ é contínua e $c'(t)\neq 0$ em um intervalo aberto $I$.
+\end{definition}
+
+\begin{theorem}
+    \label{teoFCparte1}
+    Seja $f:[a,b]\to\R$ e $F$ uma função real em $[a,b]$ tal que
+    \begin{equation*}
+        F(x)=\int_a^x f(t) \; dt
+    \end{equation*}
+   então $F$ é contínua em $[a,b]$ e, além disso, se $f$ é contínua em $x\in[a,b]$, então $F$ é diferenciável em $x$ e
+    \begin{equation*}
+        F'(x)=f(x)
+    \end{equation*}
+\end{theorem}
+
+\begin{theorem}[Teorema Fundamental do Cálculo]
+    \label{teoFC}
+    Seja $f:[a,b]\to\R$ e $F$ uma função real em $[a,b]$ tal que
+    \begin{equation*}
+        F'(x)=f(x)
+    \end{equation*}
+    Se $f$ é integrável em $[a,b]$, então
+    \begin{equation*}
+        \int_a^b f(x) \; dx = F(b)-F(a).
+    \end{equation*}
+\end{theorem}
+
+\begin{theorem}[Teorema fundamental das integrais de linha]
+    \label{teoGradiente}
+    Seja $C$ uma curva lisa descrita por $c(t)$, $a\leq t\leq b$ e $F$ uma função multivariada diferenciável com vetor gradiente $\nabla F$ contínuo em $C$, então:
+    \begin{equation*}
+        \int_a^b \nabla F(c(t)) \; c'(t) \; dt = F(c(b))-F(c(a)).
+    \end{equation*}
+\end{theorem} 
+
+\begin{theorem}[Teorema do valor médio]
+    \label{teoValorMedio}
+    Seja $f:[a,b]\to\R$ diferenciável em $(a,b)$, então existe um $c\in(a,b)$ tal que
+    \begin{equation}
+        f'(c) = \frac{f(b)-f(a)}{b-a}
+    \end{equation}
+\end{theorem}
+
+Agora considere o problema do valor inicial (PVI) dado a seguir. Neste trabalho iremos analisar um problema de Cauchy como o do exemplo abaixo e é por isso que precisamos desenvolver um pouco da teoria clássica de equações diferenciais ordinárias.
+
+\begin{equation}
+\label{ExPVI}
+    \left\{\begin{matrix*}[l]
+        \Dot{x}(t)=f(t,x)\\
+        \Dot{x}(t_0)=x_0
+    \end{matrix*}\right.
+\end{equation}
+
+A seguir iremos demonstrar um lema que transfere o PVI $\eqref{ExPVI}$ para um problema de resolução de uma equação integral.
+
+\begin{lemma}
+    \label{lemmaEquivalencia}
+    Seja $f:\Omega\to\R^n$ uma função contínua. Então, uma função diferenciável $\phi:I\to\R^n$ é uma solução do PVI $\eqref{ExPVI}$ se, e somente se, for uma solução da equação integral
+    \begin{equation}
+        \label{eqIntegralEquivalente}
+        x(t)=x_0 + \int_{t_0}^t f(s,x(s)) \; ds, \; t\in I.
+    \end{equation}
+\end{lemma}
+\begin{proof}[Dem.:]
+    Primeiro vamos assumir que $\phi$ é uma solução do PVI $\eqref{ExPVI}$, ou seja, $\phi'(t)=f(t,\phi(t)),t\in I$. Então, pelo teorema fundamental do cálculo, temos
+    \begin{equation}
+        \label{idaLemmaEquiv}
+        \int_{t_0}^t f(s,\phi(s)) \; ds = \phi(t)-\phi(t_0) \Longleftrightarrow \phi(t) = \phi(t_0) + \int_{t_0}^t f(s,\phi(s)) \; ds
+    \end{equation}
+    que é o que queríamos demonstrar.
+    
+    Da mesma forma, se $\phi:I\to\R^n$ é uma função contínua que é solução da equação integral $\eqref{eqIntegralEquivalente}$. Então, pelo teorema \ref{teoFCparte1}, temos que $\phi$ é diferenciável e, de maneira análoga a equação $\eqref{idaLemmaEquiv}$, solução do PVI $\eqref{ExPVI}$.
+\end{proof}
+
+O teorema de Picard, enunciado e demonstrado a seguir, garante a existência e unicidade da solução do PVI $\eqref{ExPVI}$ em um intervalo específico. Nosso objetivo é demonstrar que esse intervalo é, na verdade, maximal e, portanto, o PVI $\eqref{ExPVI}$ sempre possui solução e ela é única.
+
+\begin{definition}
+    A função $F:\Omega\to\R^n$ é dita de Lipschitz se existe uma constante $L>0$ tal que
+    \begin{equation*}
+        \left\|F(x)-F(y)\right\| \leq L\left\|x-y \right\|,\forall x,y\in\Omega
+    \end{equation*}
+    Dizemos, também, que $L$ é a constante de Lipschitz de $F$.
+\end{definition}
+
+\begin{theorem}[Teorema de Picard]
+    \label{teoPicard}
+    Seja $f$ função contínua e de Lipschitz com relação a segunda variável, isto é, existe uma constante $L$ tal que
+    \begin{equation*}
+        \|f(t,x) - f(t,y)\| \leq L\|x-y\|,
+    \end{equation*}
+    para todo $(t,x),(t,y)\in\Omega=I_a\times E_b$, onde $I_a=\{t\in\R\;\mid\; |t-t_0|\leq a\}$, $E_b=\{{x\in\R^n}\;\mid\; \|x-x_0\|\leq b\}$. Se $\|f\|\leq M$ em $\Omega$, então existe uma única função diferenciável $\phi:I_\alpha\to\R^n$, onde $\alpha<\text{min}\{a,\frac{b}{M},\frac{1}{L}\}$, que é solução do PVI $\eqref{ExPVI}$.
+\end{theorem}
+\raggedbottom
+\begin{proof}[Dem.:] 
+    Usando a equivalência dada pelo Lema \ref{lemmaEquivalencia} vamos nos concentrar na solução da equação $\eqref{eqIntegralEquivalente}$. Seja $C = C(I_\alpha,E_b)$ o espaço métrico completo das funções contínuas $g:I_\alpha\to E_b$ com a métrica da convergência uniforme
+    \begin{equation}
+        d(g_1,g_2)=\sup_{t\in I_\alpha} \|g_1(t)-g_2(t)\|
+    \end{equation}
+    
+    Para $g\in C$, vamos definir o funcional $\BS{\Phi}(g):I_\alpha\to\R^n$ dado por
+    \begin{equation}
+        \BS{\Phi}(g)(t)=g(t_0)+\int_{t_0}^t f(s,g(s)) \; ds,\; t\in I_\alpha
+    \end{equation}
+    
+    Note que $\BS{\Phi}(C)\subseteq C$, de fato, para todo $t\in I_\alpha$, temos
+    \begin{equation}
+    \begin{split}
+        \|\BS{\Phi}(g)(t)-g(t_0)\| &= \left\|\int_{t_0}^t f(s,g(s))\;ds \right\| \leq \int_{t_0}^t \|f(s,g(s))\|\;ds \\ & \leq M|t-t_0|\leq M\alpha \leq b
+    \end{split}
+    \end{equation}
+    
+    Assim, a equação integral $\eqref{eqIntegralEquivalente}$ pode ser escrita na forma funcional
+    \begin{equation}
+        x = \BS{\Phi}(x)
+    \end{equation}
+    
+    Portanto, as soluções da equação $\eqref{eqIntegralEquivalente}$ são os pontos fixos de $\BS{\Phi}$. Agora queremos usar o teorema do ponto fixo de Banach \ref{teoBanach} para mostrar a unicidade e existência da solução, para tal precisamos mostrar que $\BS{\Phi}(x)$ é uma contração. De fato,
+    \begin{equation}
+    \begin{split}
+        \|\BS{\Phi}(g_1)(t) - \BS{\Phi}(g_2)(t)\| &= \left\|\int_{t_0}^t \left[f(s,g_1(s)) - f(s,g_2(s))\right] \; ds \right\|\\ &\leq \int_{t_0}^t \left\|f(s,g_1(s)) - f(s,g_2(s))\right\| \; ds \\ 
+        &\leq \int_{t_0}^t L \|g_1(s)-g_2(s)\| \; ds
+    \end{split}
+    \end{equation}
+    onde $L$ é a constante de Lipschitz de $f$. Para concluir, temos
+    \begin{equation}
+    \begin{split}
+        d(\BS{\Phi}(g_1), \BS{\Phi}(g_2)) &\leq \int_{t_0}^t Ld(g_1,g_2) \; ds \\ &\leq L|t-t_0|d(g_1,g_2) \\ &\leq L\alpha d(g_1,g_2)
+    \end{split}
+    \end{equation}
+    
+    Como $\alpha<\frac{1}{L}$, temos que $\BS{\Phi}(x)$ é uma contração e, pelo teorema do ponto fixo de Banach \ref{teoBanach}, existe uma única solução para o PVI $\eqref{ExPVI}$ no intervalo $I_\alpha$.
+\end{proof}
+
+Note que nosso $\alpha$ depende da função $f$, dos intervalos gerados por $a,b$ e da condição inicial $(t_0,x_0)$. O lema a seguir mostra que podemos escolher um mesmo $\alpha$ para toda condição inicial dentro de um compacto, um passo importante para conseguirmos provar que nosso intervalo é maximal.
+
+\begin{lemma}
+    \label{lemmaAlphaCompacto}
+    Se $K\subset\Omega$ é um compacto, então um mesmo valor de $\alpha$ pode ser escolhido de modo a servir para todas condições iniciais $(t_0,x_0)\in K$.
+\end{lemma}
+\begin{proof}[Dem.:] 
+    Considere uma $\delta$-vizinhança $K_\delta$ de $K$ tal que
+    \begin{equation}
+        K\subset K_\delta\subset\overline{K}_\delta\subset\Omega
+    \end{equation}
+    então podemos escolher $a$ e $b$ tais que o retângulo $Q(a,b)=\{(t,x)\;\mid\;  t\in I_a, x\in E_b\}$ esteja contido em $\overline{K}_\delta$ para todo $(t_0,x_0)\in K$. Para $\alpha$ satisfazer todas as condições do teorema de Picard \ref{teoPicard}, basta tomar $M = \text{max}\{\|f(t,x)\|\;\mid\;  (t,x)\in\overline{K}_\delta\}$ e, por fim, um $\alpha<\text{min}\{a,\frac{b}{M},\frac{1}{L}\}$ , onde $L$ é a constante de $Lipschitz$ de $f$. Assim, podemos pegar intervalos de mesmo tamanho $\alpha$ para toda condição inicial dentro de um compacto.
+\end{proof}
+
+O lema a seguir é um passo muito importante para conseguirmos, finalmente, mostrar a existência e unicidade das soluções do PVI $\eqref{ExPVI}$ em um intervalo maximal.
+
+\begin{lemma}
+    \label{lemmaCoincidem}
+    Sejam $\phi_1:I_1\to\R^n$ e $\phi_2:I_2\to\R^n$ soluções do PVI $\eqref{ExPVI}$. Então, $\phi_1$ e $\phi_2$ coincidem em $I_1\cap I_2$.
+\end{lemma}
+\begin{proof}[Dem.:]
+    Temos que $I_1\cap I_2$ é um intervalo aberto e vamos definir o subconjunto $J$ de $I_1\cap I_2$ por $J=\{t\in I_1\cap I_2\;\mid\;  \phi_1(t)=\phi_2(t)\}$. Note que $J$ é fechado e não vazio, pois é a igual ao conjunto $(\phi_1-\phi_2)^{-1}(0)$, a pré-imagem do conjunto $\{0\}$ da função contínua $(\phi_1-\phi_2)(t)$, e $t_0\in J$.
+    
+    Além disso, pelo teorema de Picard \ref{teoPicard}, a função $(\phi_1-\phi_2)(t)$ é solução da equação diferencial $\dot{x}=0$ em $J$, logo $J$ é aberto em $I_1\cap I_2$. Como intervalos são convexos, temos que $J=I_1\cap I_2$.
+\end{proof}
+
+\begin{theorem}
+    Seja $f$ uma função contínua, limitada e de Lipschitz com relação a segunda variável, então toda solução do PVI $\eqref{ExPVI}$ pode ser estendida a um intervalo maximal, o qual é aberto.
+\end{theorem}
+\begin{proof}[Dem.:]
+    Considere o conjunto de todas soluções $\phi_i:I_i\to\R^n$ do PVI $\eqref{ExPVI}$, onde $I_i$ é o intervalo aberto contendo $x_0$ no qual a solução $\phi_i$ está definida. Agora, seja $I=\cup I_i$ e defina $\phi:I\to\R^n$ da seguinte maneira
+    \begin{equation}
+        \phi(t)=\phi_i(t)
+    \end{equation}
+    onde $i$ é escolhido tal que $t\in I_i$. Podemos fazer isso pois todo $t\in I$ está contido em algum $I_i$. Essa função está bem definida por conta do lema \ref{lemmaCoincidem} e, além disso, $\phi$ é solução do PVI $\eqref{ExPVI}$ porque cada uma das $\phi_i$ também é. 
+    
+    Denote $I=(t_-,t_+)$ e suponha que exista $\widehat{I}$, um intervalo que contém propriamente $I$ no qual o PVI $\eqref{ExPVI}$ possui solução $\widehat{\phi}$. Então, esse intervalo deve conter ao menos uma das extremidades de $I$, vamos assumir que seja $t_+$, e o teorema de Picard \ref{teoPicard} garante a existência da solução $\widehat{\phi}$ no intervalo $(t_+-\alpha,t_++\alpha)$. Com isso, a função $\overline{\phi}$ definida no intervalo $(t_-,t_++\alpha)$ por
+    \begin{equation}
+        \overline{\phi}=\left\{\begin{matrix*}[l]
+            \phi(t),t\in(t_-,t_+)\\
+            \widehat{\phi}(t),t\in[t_+,t_++\alpha)
+        \end{matrix*}\right.
+    \end{equation}
+    é uma solução do PVI $\eqref{ExPVI}$. Porém, como $I$ é a união de todos intervalos abertos contendo $x_0$ no qual o PVI $\eqref{ExPVI}$ possui solução, portanto temos que $\widehat{I}\subseteq I$. Em outras palavras, não existe intervalo que contém propriamente $I$ e, portanto, $I$ é maximal.
+\end{proof}
+
+O teorema a seguir é importante para determinar se as soluções são globalmente definidas. Esse teorema nos diz que, se o intervalo é finito, então teremos que $\|\phi(t)\|\to\infty$ quando $t\to t_+$ e, se $t_+=\infty$, temos que $\|\phi(t)\|$ é limitado em intervalos finitos. Além disso, se $\|\dot{\phi}(t)\|$ for limitado, então $\|\phi(t)\|$ não pode tender a infinito em intervalos finitos e, portanto, é globalmente definida.
+
+\begin{theorem}
+    Se $\phi(t)$ é solução do PVI $\eqref{ExPVI}$ com intervalo maximal $(t_-,t_+)$, então $(t,\phi(t))\to\partial\Omega$ quando $t\to t_+$ (o mesmo vale para $t_-$), isto é, dado $K\subset\Omega$ compacto, existe $\tau<t_+$ tal que $(t,\phi(t))\notin K$ para $t\in (\tau,t_+)$.
+\end{theorem}
+\begin{proof}[Dem.:]
+    Primeiro vamos mostrar o caso $t_+=\infty$. Dado um $K\subset\Omega$ compacto, tome
+    \begin{equation}
+        \tau = \sup_{(t,\phi(t))\in K} t
+    \end{equation}
+    e, portanto, $(t,\phi(t))\notin K$ se $t>\tau$. Para o caso $t_+<\infty$, temos pelo lema \ref{lemmaAlphaCompacto} que podemos escolher um $\alpha$ que sirva para todas condições iniciais em $K$, assim se $(t_1,\phi(t_1))\in K$, temos que $\phi$ está definida no intervalo $(t_1-\alpha,t_1+\alpha)$. Por fim, podemos tomar $\tau=t_+ - \alpha$ de forma que $\forall t\in(\tau,t_+)$, $(t,\phi(t))\notin K$, pois se $t_2\in(\tau,t_+)$ e $(t_2,\phi(t_2))\in K$ temos que $\phi$ estaria definida em $(t_2-\alpha,t_2+\alpha)$, o que é um absurdo, pois
+    \begin{equation}
+        t_2+\alpha > \tau + \alpha = t_+,
+    \end{equation}
+    o que contradiz o fato de $(t_-,t_+)$ ser maximal. A demonstração é análoga para o limite inferior do intervalo, $t_-$.
+\end{proof}
+
+Com o resultado do teorema acima e do lema que será mostrado a seguir poderemos, finalmente, demonstrar a existência e unicidade da solução do PVI $\eqref{ExPVI}$ no domínio de definição da função $f(t,x)$ e, com isso, concluir nosso capítulo de resultados preliminares.
+
+\begin{lemma}[Gronwall]
+    \label{lemmaGronwall}
+    Sejam $f,g,h:(a,b)\to\R$ funções contínuas e não negativas tais que,
+    \begin{equation}
+        \label{hipoteseGronwall}
+        f(x) \leq h(x) + \int_{x_0}^x g(s)f(s) \; ds
+    \end{equation}
+    então
+    \begin{equation}
+        f(x) \leq h(x) + \int_{x_0}^x g(s)h(s)e^{\int_s^x g(u)\; du} \; ds
+    \end{equation}
+    Em particular, se $h(x)=C=cte$, temos
+    \begin{equation}
+        \label{resultadoGronwall}
+        f(x) \leq Ce^{\int_{x_0}^x g(s)\; ds}
+    \end{equation}
+\end{lemma}
+\begin{proof}[Dem.:]
+    Seja
+    \begin{equation}
+        w(x) = \int_{x_0}^x g(s)f(s) \; ds,
+    \end{equation}
+    então $w'(x)=g(x)f(x)$. Usando $\eqref{hipoteseGronwall}$, obtemos
+    \begin{equation}
+        w'(x) \leq g(x)h(x) + g(x)w(x)
+    \end{equation}
+    que podemos reescrever como
+    \begin{equation}
+        \frac{d}{dx}\left[w(x)e^{-\int_{x_0}^x g(s)\; ds}\right] \leq g(x)h(x)e^{-\int_{x_0}^x g(s)\; ds}
+    \end{equation}
+    que, ao integrar, temos
+    \begin{equation}
+        w(x)e^{-\int_{x_0}^x g(s)\; ds} \leq \int_{x_0}^x g(s)h(s)e^{-\int_{x_0}^s g(u)\; du}\; ds
+    \end{equation}
+    Por fim, usamos a desigualdade acima para obter
+    \begin{equation}
+    \begin{split}
+        f(x) &\leq h(x) + w(x) \\
+        &\leq h(x) + e^{\int_{x_0}^x g(s)\; ds}\int_{x_0}^x g(s)h(s)e^{\int_{s}^{x_0} g(u)\; du}\; ds \\
+        &\leq h(x) + \int_{x_0}^x g(s)h(s)e^{\int_{s}^{x} g(u)\; du}\; ds
+    \end{split}
+    \end{equation}
+    Para demonstrar a desigualdade $\eqref{resultadoGronwall}$, assumindo $h(x)=C,\forall x\in(a,b)$, defina
+    \begin{equation}
+        w(x)=C + \int_{x_0}^x g(s)f(s) \; ds
+    \end{equation}
+    De onde podemos obter
+    \begin{equation}
+        \frac{w'}{w}=\frac{g(x)f(x)}{C+\int_{x_0}^x g(s)f(s)\; ds} \leq \frac{g(x)\left( C+\int_{x_0}^x g(s)f(s)\; ds\right)}{C+\int_{x_0}^x g(s)f(s)\; ds} = g(x)
+    \end{equation}
+    que, ao integrar entre $x_0$ e $x$, nos dá
+    \begin{equation}
+        \ln{w(x)} - \ln{w(x_0)} \leq \int_{x_0}^x g(s) \; ds
+    \end{equation}
+    Usando exponenciais, temos
+    \begin{equation}
+        w(x) \leq e^{w(x_0)+\int_{x_0}^x g(s) \; ds} = w(x_0)e^{\int_{x_0}^x g(s) \; ds}
+    \end{equation}
+    Finalmente, como $w(x_0)=C$ e $f(x)\leq w(x)$, concluímos
+    \begin{equation}
+        f(x) \leq Ce^{\int_{x_0}^x g(s) \; ds}
+    \end{equation}
+\end{proof}
+
+\begin{theorem}
+    \label{teoExistUnic}
+    Seja $f:\Omega\to\R^n$ contínua e de Lipschitz, onde $\Omega=\{(t,x)\in\R\times\R^n\;\mid\;  a<t<b\}$. Então, para todo $(t_0,x_0)\in\Omega$ existe uma única solução do PVI $\eqref{ExPVI}$ no intervalo $(a,b)$.
+\end{theorem}
+\begin{proof}[Dem.:]
+    Basta mostrar que, $\forall\epsilon>0$, a solução do PVI $\eqref{ExPVI}$ está definida no intervalo $(a-\epsilon,b+\epsilon)$. Para tal, defina as constantes $C_1=\max\{\|f(t,x_0)\|\;\mid\; a-\epsilon\leq t\leq b+\epsilon\}$ e $C_2=\sup\{\|f_x(t,x)\|\;\mid\; (t,x)\in\Omega\}$, onde $f_x$ é a derivada parcial de $f$ na variável $x$. Essas constantes estão bem definidas pois o intervalo $[a-\epsilon,b+\epsilon]$ é fechado e $f_x$ é limitada em $\Omega$. Então, pelo teorema do valor médio, temos
+    \begin{equation}
+    \begin{split}
+        \|f(t,x)\| &= \|f(t,x)+f(t,x_0)-f(t,x_0)\| \\ &\leq \|f(t,x_0)\| + \|f(t,x)-f(t,x_0)\| \\ & \leq C_1 + C_2\|x-x_0\|
+    \end{split}
+    \end{equation}
+    e, usando $\eqref{eqIntegralEquivalente}$, obtemos
+    \begin{equation}
+    \begin{split}
+        \|x(t)-x_0\| &\leq \left\|\int_{t_0}^t f(s,x(s))\; ds \right\| \\
+        & \leq \int_{t_0}^t C_1 + C_2\int_{t_0}^t\|x(s)-x_0\|\; ds
+    \end{split}
+    \end{equation}
+    Isso implica, pelo lema de Gronwall \ref{lemmaGronwall}, que
+    \begin{equation}
+         \|x(t)-x_0\|\leq C_3 e^{C_2(t-t_0)} \leq C_4=cte,
+    \end{equation}
+    onde $C_3=\int_{t_0}^t C_1$. Com isso, mostramos que $f(x,t)$ é limitada e, portanto, $x(t)$ não tende ao infinito e a solução está definida no intervalo $(a-\epsilon,b-\epsilon)$. Como $\epsilon$ é arbitrário, temos o resultado desejado.
+\end{proof}
