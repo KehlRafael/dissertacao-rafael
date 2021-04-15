@@ -149,7 +149,7 @@
 % " Keywords:
 %	  {keyword 1}{keyword 2}{keyword 3}{keyword 4} "
 %
-\keywords{Teoria dos Jogos}{racionalidade}{jogos evolucionários}{grafos}
+\keywords{Teoria dos Jogos}{Racionalidade}{Jogos Evolucionários}{Grafos}
 
 %
 % Autor:
@@ -168,9 +168,9 @@
 % Membros da banca:
 % 	{tratamento}{nome}{sobrenome}
 %
-\membera{Profa. Dra.}{Nome}{Sobrenome}{Instituição A}
-\memberb{Prof. Dr.}{Nome}{Sobrenome}{Instituição B}
-\memberc{Prof. Dr.}{Nome}{Sobrenome}{Instituição C}
+\membera{Profa. Dra.}{Chiara}{Mocenni}{Università degli Studi di Siena}
+\memberb{Prof. Dr.}{Marcelo}{De Carvalho Griebeler}{PPGE - UFRGS}
+\memberc{Prof. Dr.}{Matheus}{Correia dos Santos}{PPGMAp - UFRGS}
 
 %
 % Se ha um quarto membro na banca:
@@ -201,6 +201,7 @@
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{placeins}
+%\usepackage{hyperref}
 \usepackage{url}
 
 % Meus newcommand
@@ -235,18 +236,69 @@
 %		makeindex main.nlo -s nomencl.ist -o main.nls
 %
 
-\Abbrev{SBM}{Sociedade Brasileira de Matemática}%
-\Abbrev{SBM}{Sociedade Brasileira de Matemática}% dupla insercao, desconsiderada
-\Abbrev{CFD}{Computational Fluid Dynamics}%
+\Abbrev{PVI}{Problema de Valor Inicial}%
 
-\Symbol{$\Delta$}{Operador laplaciano}%
-\Symbol{$\mu_N$}{Medida empírica}%
+\Symbol{$E$}{Espaço métrico.}%
 
-\PConst{$k$}{Constante de Boltzmann}%
-	{$1,380 648 52\times 10^{-23}\; J\cdot K^{-1}$}%
-\PConst{$\hbar$}{Constante reduzida de Planck}%
-	{$6,626 070 15\times 10^{-34}\; J\cdot s/2\pi$}%
+\Symbol{$d(x,y)$}{Distância entre os pontos $x$ e $y$ em um espaço métrico. A métrica do espaço.}%
 
+\Symbol{$T$}{Transformação linear.}%
+
+\Symbol{$C$}{Curva lisa.}%
+
+\Symbol{$\nabla F$}{Vetor gradiente da função $F$.}%
+
+\Symbol{$K$}{Conjunto compacto.}%
+
+\Symbol{$\Omega$}{Produto cartesiano de um subconjunto aberto de $\R$ com um espaço métrico}
+
+\Symbol{$\R$}{Conjunto dos números reais.}
+
+\Symbol{$\partial\Omega$}{Fronteira do conjunto $\Omega$.}
+
+\Symbol{$\V$}{Conjunto de jogadores. Conjunto de jogadores vértice.}%
+
+\Symbol{$S_i$}{Conjunto de estratégias puras do jogador $i$.}%
+
+\Symbol{$\BS{S}$}{Espaço de estratégias do jogo.}%
+
+\Symbol{$u_i(\BS{s})$}{Função de pagamentos clássica do jogador $i$ para o perfil de estratégias do jogo $\BS{s}$.}%
+
+\Symbol{$\Delta_M$}{Conjunto de estratégias mistas para um jogador com $M$ estratégias.}%
+
+\Symbol{$\Delta$}{Espaço de estratégias mistas do jogo.}%
+
+\Symbol{$\BS{X}$}{Perfil de estratégias do jogo evolucionário.}
+
+\Symbol{$\BS{x}$}{Distribuição de estratégias de uma população.}
+
+\Symbol{$B_v$}{Matriz de pagamentos do jogador $v$. Somente $B$ se for a única matriz de pagamentos do jogo.}
+
+\Symbol{$\BS{e_i}$}{Vetor unitário cuja $i$-ésima entrada é igual a $1$.}
+
+\Symbol{$\pi_s(\BS{x})$}{Aptidão do fenótipo $\BS{s}\in\BS{S}$ em uma população com distribuição $\BS{x}$.}
+
+\Symbol{$\phi(\BS{x})$}{Aptidão média de uma população com distribuição $\BS{x}$.}
+
+\Symbol{$\pi_{v,s}(\BS{X})$}{Pagamento de $v$ ao usar a estratégia $s$ em um jogo com perfil de estratégias $\BS{X}$. Também $\pi^\G_{v,s}(\BS{X})$ e $\pi^\mathcal{H}_{v,s}(\BS{X})$ para jogos em grafos e hiper-racionais, respectivamente.}
+
+\Symbol{$\phi_v(\BS{X})$}{Pagamento médio de $v$ em um jogo com perfil de estratégias $\BS{X}$. Também $\phi^\G_v(\BS{X})$ e $\phi^\mathcal{H}_v(\BS{X})$ para jogos em grafos e hiper-racionais, respectivamente.}
+
+\Symbol{$\Rc$}{Matriz de preferências de um jogo com jogadores hiper-racionais.}
+
+\Symbol{$k_v(\BS{X})$}{Jogador vizinhança do jogador $v$ no jogo com perfil de estratégias $\BS{X}$.}
+
+\Symbol{$\G$}{Grafo ou rede de conexões.}
+
+\Symbol{$A$}{Matriz de adjacências que descreve o grafo $\G$.}
+
+\Symbol{$\preceq$}{Relação qualquer. Neste contexto, indica preferência.}
+
+\Symbol{$\gamma_{v,s}(t)$}{Parte social da equação de replicação hiper-racional.}
+
+\Symbol{$\psi_{v,s}(t)$}{Parte pessoal da equação de replicação hiper-racional.}
+
+\Symbol{$d_v$}{Grau do vértice $v$. Também $d_{v,r}$ como o grau de preferências de $v$.}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 %
@@ -283,22 +335,18 @@
 %	Epigrafe:
 %		Entre colchetes e especificada a porcentagem da largura da pagina destinada
 %		a epigrafe (padrao 0.5)
-	\begin{epigraph}[0.7]
-		{
-			\normalfont\large
-			A$\Gamma$E$\Omega$METPHTO$\Sigma$
-			MH$\Delta$EI$\Sigma$
-			EI$\Sigma$IT$\Omega$
-		} \\[-12pt]
-		``Que não entre aqui aquele que não sabe Geometria'' \\
-		(Inscrição que marcava a entrada da Academia de Platão)
-		% Epigrafe "roubada" da tese de Renato Vaz Linn:
-		% https://lume.ufrgs.br/handle/10183/163257
+	\begin{epigraph}[0.5]
+		{``Todos animais são iguais, mas alguns animais são mais iguais que os outros''} \\ \vspace{.25cm}
+        \hfill -- George Orwell
 	\end{epigraph}
 
 %	Agradecimentos <ambiente>:
 	\begin{acknowledgments}
-		\lipsum[1]
+		Aos meus pais que me incentivaram e ensinaram a importância do estudo. Sem o apoio, paciência, incentivo e exemplo deles nada disso seria possível. Também ao meu irmão, que contribuiu com este trabalho no tratamento das imagens e gráficos.
+		
+		Ao meu orientador, Jean, que direcionou a pesquisa e proveu muitos dos recursos necessários para a realização deste trabalho, além de sempre estar aberto para tirar minhas dúvidas e debater sobre o trabalho.  
+		
+		À minha namorada, que esteve do meu lado durante todo o mestrado me dando apoio e atenção. Tua presença sempre me acalma e me dá a clareza necessária para seguir em frente.
 	\end{acknowledgments}
 
 %	Impressao do sumario:
@@ -325,7 +373,7 @@
 
 %	Abstract <ambiente>:
 	\begin{abstract}
-	    This work proposes a new mathematical model for evolutionary dynamics in finite networks. This model extends the networked replicator equation to hyper-rational players, which are capable of considering the profit or loss of others when choosing their strategy. This is made by adding a new parameter called matrix of preferences, that holds information on how much a player values the profit or loss of another player. The network is represented by a graph where each vertex is interpreted as a subpopulation of hyper-rational replicators with the same preferences engaged at each time instant in 2-player games with a neighboring subpopulation, receiving a payoff according to their preferences. The obtained equation does not depends on any hypothesis over the game payoff matrices, graph topology or player preferences. Nash equilibria and the behavior of hyper-rational players are discussed. A comparison between rational and hyper-rational players in some games and graphs is also made.
+	    This work proposes a new mathematical model for evolutionary dynamics in finite networks. This model extends the replicator equation on networks to hyper-rational players, which considers the profit or the loss of others when choosing their strategy. This is made by adding a new parameter called matrix of preferences, which holds information on how much a player values the profit or the loss of another player. The network is represented by a graph where each vertex is interpreted as a subpopulation of hyper-rational replicators with the same preferences engaged at each time instant in 2-player games with a neighboring subpopulation, receiving a payoff according to their preferences. The obtained equation does not depends on any hypothesis over the game payoff matrices, graph topology or player preferences. Nash equilibria and the behavior of hyper-rational players are discussed. A comparison between rational and hyper-rational players in some games and graphs is also made.
 		
 		\noindent \textbf{Keywords:} Nonlinear Systems; Graph Theory; Evolutionary Games.
 	\end{abstract}
@@ -363,11 +411,17 @@
 % Equação de replicação Hiper-racional em redes finitas
 \include{./chap/h-eq-rep-hr-redes-finitas}
 
-% O jogo do Triângulo Amoroso
-\include{./chap/i-colegas-quarto}
+% O Dilema do Prisioneiro Hiper-racional
+\include{chap/i-pd-hiper-racional}
 
-% Comparação entre modelos
-\include{./chap/j-comparacao-modelos}
+% O jogo dos Colegas de Quarto
+\include{./chap/j-colegas-quarto}
+
+% Simulações
+\include{./chap/k-simulacoes}
+
+% Conclusão
+\include{./chap/l-conclusao}
 
 %
 %	Referencias bibliograficas:
@@ -392,16 +446,16 @@
 %
 %	Apendices:
 %
-\appendix % formatacao do estilo dos apendices
+%\appendix % formatacao do estilo dos apendices
 
 %	Apendice A - Algoritmos:
-	\chapter{Algoritmos}
-		\lipsum[29]
-		\section{Primeira seção}
-			\lipsum[30-31]
-		\section{Segunda seção}
-			\lipsum[32-33]
-		\section{Terceira seção}
-			\lipsum[34-35]
+%	\chapter{Algoritmos}
+%		\lipsum[29]
+%		\section{Primeira seção}
+%			\lipsum[30-31]
+%		\section{Segunda seção}
+%			\lipsum[32-33]
+%		\section{Terceira seção}
+%			\lipsum[34-35]
 
 \end{document}

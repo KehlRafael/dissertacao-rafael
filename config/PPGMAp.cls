@@ -685,7 +685,7 @@
 \newenvironment{epigraph}[1][0.4]{
 	\chapter*{}\mbox{}\vfill\hfill
 	\begin{minipage}{#1\linewidth}
-		\centering\renewcommand{\baselinestretch}{2.5}\itshape
+		\centering\renewcommand{\baselinestretch}{1.5}\itshape
 }{\end{minipage}\vskip 1cm \clearpage}
 
 %

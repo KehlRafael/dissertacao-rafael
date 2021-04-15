@@ -83,7 +83,7 @@ Agora vamos analisar as entradas de $\nabla F_v(\BS{x})$ para tentar limitar o v
         \left( \sum^M_{k=1}x_{u,k}b_{u,k,s}x_{v,s}^2\right) \Biggr|
     \end{multlined}
 \end{equation}
-Pelas propriedades do módulo, temos
+Pela desigualdade triangular, temos
 \begin{equation}
 \begin{split}
     \left\|\pdv{F_v}{x_{v,s}}\right\| \leq &
@@ -128,7 +128,7 @@ Finalmente chegamos no resultado desejado, pois ao substituir o resultado acima 
 \begin{equation}
     \|F_v(x)-F_v(y)\|\leq L \int_0^1 \|x-y\| \; dt = L\|x-y\|,\forall v\in\V
 \end{equation}
-Portanto, a equação $\eqref{defEqRepHR}$ é de Lipschitz e satisfaz todas as condições do teorema \ref{teoExistUnic}.
+Portanto, temos que $F_v$ é de Lipschitz e satisfaz todas as condições do teorema de existência e unicidade da solução \ref{teoExistUnic}.
 
 % -- % -- % -- %
 
@@ -188,9 +188,9 @@ Em outras palavras, se a condição inicial do problema for uma distribuição d
 
 % -- % -- % -- %
 
-\section{Hiper-equilíbrios são pontos fixos da equação de replicação hiper-racional em grafos}
+\section{Hiperequilíbrios são pontos fixos da equação de replicação hiper-racional em grafos}
 
-Suponha que o perfil de estratégias $\BS{X^*}$ é um hiper-equilíbrio, como definido em \ref{defHiperEq}, teremos
+Suponha que o perfil de estratégias $\BS{X^*}$ é um hiperequilíbrio, como definido em \ref{defHiperEq}, teremos
 \begin{equation}
 \begin{split}
     \Dot{x}_{v,s}^*(t)&=x_{v,s}^*(t)\left(\rho_{v,s}^*(t)-\phi_v^*(t)\right)\\
@@ -205,7 +205,7 @@ Usando o resultado $\eqref{invariancia}$, concluímos que
     \Dot{x}_{v,s}^*=0,\forall s\in S,\forall v\in\V
 \end{equation}
 
-Assim, todo hiper-equilíbrio é um ponto fixo da equação de replicação hiper-racional em grafos.
+Assim, todo hiperequilíbrio é um ponto fixo da equação de replicação hiper-racional em grafos.
 
 % -- % -- % -- %
 
