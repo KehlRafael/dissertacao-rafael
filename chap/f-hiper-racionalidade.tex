@@ -15,10 +15,20 @@ Diversos resultados de economia experimental mostraram que a hipótese de racion
 
 \begin{definition}[Askari, Gordji e Park \cite{askari2019behavioral}]
     \label{defHiperPreferencias}
-    As hiperpreferências do jogador $v$ são uma relação sobre o conjunto de todas as escolhas do indivíduo na qual, dados $\Omega_v$ e $\Omega_v'$, temos $\Omega_v\preceq\Omega_v'$ se, para todo $u\in\{1,2,\dots,N\}$, $\omega_u\preceq\omega_u'$ ou $\omega_u'\preceq\omega_u$ baseado na preferência pessoal, social ou ambas de $v$.
+    As hiperpreferências do jogador $v$ são uma relação sobre o conjunto de todas as escolhas do indivíduo na qual, dados $\Omega_v$ e $\Omega_v'$, temos $\Omega_v\preceq\Omega_v'$ se, para todo $u\in\{1,2,\dots,N\}$, $\omega_u\preceq\omega_u'$ baseado na preferência pessoal, social ou ambas de $v$.
 \end{definition}
 
-Note que essa relação não é necessariamente completa nem transitiva, porém um indivíduo, quando forçado a escolher entre dois conjuntos de escolhas, sempre terá predileção por um. Essa predileção depende nas condições da interação, comportamento, crenças e quaisquer outros valores que o indivíduo venha a ter. Por conta disso, as hiperpreferências nos ajudam a obter condições mais realistas para a tomada de decisão do indivíduo \cite{askari2019behavioral}.
+Para exemplificar, imagine que um indivíduo convida um amigo para um almoço e tem a opção de servir três pratos diferentes: Pizza, Arroz com Feijão e uma Salada Mista. Na hora de escolher sua refeição o indivíduo possui uma ordem bem definida para as suas preferências, Pizza em primeiro lugar, Arroz com Feijão em segundo e a Salada Mista em terceiro. Já o seu amigo prefere Salada Mista em primeiro lugar e Pizza em terceiro. Um indivíduo racional iria escolher sempre a Pizza, pois é o seu prato favorito, mas um indivíduo com preferências sociais que pesam na sua tomada de decisão poderá fazer uma escolha diferente. Considerando que este indivíduo possua preferências sociais que incluem, até certo ponto, agradar seu amigo, nós poderíamos ter as seguintes relações:
+
+\begin{itemize}
+    \item Arroz e Feijão $\preceq$ Pizza, pois o indivíduo não estaria disposto a abrir mão da pizza por um prato que seu amigo apenas gosta um pouco.
+    \item Salada Mista $\preceq$ Arroz e Feijão, pois arroz e feijão parece ser um bom meio termo para os dois, ninguém ficaria insatisfeito.
+    \item Pizza $\preceq$ Salada Mista, sabendo da predileção de seu amigo pela Salada Mista, o indivíduo estaria disposto a abir mão da pizza.
+\end{itemize}
+
+Vemos que essa relação não é transitiva, porém o indivíduo, quando forçado a escolher entre dois conjuntos de escolhas, que no exemplo seria o prato do almoço, sempre terá predileção por um. Essa predileção depende das condições da interação, comportamento, crenças e quaisquer outros valores que o indivíduo venha a ter. Por conta disso, as hiperpreferências nos ajudam a obter condições mais realistas para a tomada de decisão do indivíduo \cite{askari2019behavioral}.
+
+Além disso, no exemplo vimos que no primeiro caso o indivíduo escolhe de acordo com suas preferências, no segundo ele escolhe de acordo com ambas preferências e, no último, escolhe baseado nas preferências sociais. Com isso em mente, podemos definir o conceito de um indivíduo hiper-racional.
 
 \begin{definition}[Askari, Gordji e Park \cite{askari2019behavioral}]
     Um indivíduo é dito hiper-racional se ele é racional (\ref{defRacionalidade}) e suas hiperpreferências satisfazem ao menos uma das seguintes condições:
@@ -28,7 +38,7 @@ Note que essa relação não é necessariamente completa nem transitiva, porém 
     \end{itemize}
 \end{definition}
 
-Perceba que todo indivíduo hiper-racional é racional, mas nem todo indivíduo racional é hiper-racional. Podemos concluir que um indivíduo é hiper-racional se ele considera o pagamento dos demais envolvidos em suas interações, portanto ele nem sempre é capaz de identificar qual ação irá maximizar seu benefício, mas pode fazer uma escolha que maximiza o benefício dos demais agentes envolvidos. Um agente hiper-racional escolhe sua ação baseado em suas hiperpreferências, apesar de não ter conhecimento das hiperpreferências dos demais, ou seja, agentes hiper-racionais não possuem informação completa. Essa característica é muito importante para a dinâmica entre jogadores hiper-racionais e será mais explorada nas próximas seções.
+Perceba que todo indivíduo hiper-racional é racional, mas nem todo indivíduo racional é hiper-racional. Podemos concluir que um indivíduo é hiper-racional se ele considera o pagamento dos demais envolvidos em suas interações, portanto ele nem sempre é capaz de identificar qual ação irá maximizar seu benefício, mas pode fazer uma escolha que maximiza o benefício dos demais agentes envolvidos. Um agente hiper-racional escolhe sua ação baseado em suas hiperpreferências, apesar de não ter conhecimento das hiperpreferências dos demais, ou seja,  há uma assimetria de informação entre agentes hiper-racionais, que possuem somente uma hipótese para as hiperpreferências de seus adversários. Essa característica é muito importante para a dinâmica entre jogadores hiper-racionais e será mais explorada nas próximas seções.
 
 Como dito anteriormente, a hiper-racionalidade permite que alguns comportamentos humanos possam ser expressados por agentes hiper-racionais. Um agente altruísta busca maximizar o benefício de vários dos agentes envolvidos, enquanto um agente devoto a um outro indivíduo busca maximizar o benefício deste indivíduo, mesmo que isso diminua o seu benefício pessoal, e um agente ciumento, ou invejoso, busca diminuir o benefício de agentes bem sucedidos quando ele não consegue aumentar o seu próprio.
 

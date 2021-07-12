@@ -150,7 +150,14 @@ Essa expressão nos dá um valor de $x_{j,s}$ em função de $r_i$. Como $j$ nã
 Assim, para valores de $r_i=r_j$ dentro da zona de transição temos um ponto de equilíbrio instável em $\eqref{eqInternoPDHR}$. Para exemplificar vamos usar o jogo que nos deu a equação $\eqref{eqQuadradoEx}$, onde para valores de $r_i=r_j\in(\frac{4}{6},\frac{5}{6})$ teremos um ponto fixo interno e instável em
 
 \begin{equation}
+    \label{ptoEqCela}
     x_{i,s}=5-6r_i=5-6r_j=x_{j,s}
 \end{equation}
 
-Os gráficos gerados nesse capítulo não capturaram esses pontos fixos, pois a condição inicial $[0.5,0.5]^T$ não pertence à nenhuma das zonas de transição dadas nos exemplos.
+Os gráficos gerados nesse capítulo não capturaram esses pontos fixos, pois a condição inicial $[0.5,0.5]^T$ não pertence à nenhuma das zonas de transição dadas nos exemplos. Para demonstrar a instabilidade deste ponto, basta considerar a equação de replicação dada por esta matriz de pagamentos, que é a seguinte.
+
+\begin{equation}
+    \dot{x}_{i,s}= 5-6r_i - x_{j,s}
+\end{equation}
+
+Como o jogo é simétrico, a equação é a mesma para ambos jogadores. Como concluímos acima, se $x_{j,s}=5-6r_i$, temos $\dot{x}_{i,s}=0$, porém qualquer alteração em $x_{j,s}$ fará com que $\dot{x}_{i,s}\neq 0$. Novamente, pela simetria, qualquer perturbação no equilíbrio fará com que o outro jogador também saia do equilíbrio. Então, tomando $r_i=r_j$ e $x_{i,s}=x_{j,s}$ como na relação $\eqref{ptoEqCela}$, dado $\epsilon>0$, $\forall x_{i,s}'\neq x_{i,s}$ tal que $|x_{i,s}'-x_{i,s}|<\epsilon$ teremos que $\dot{x}_{j,s}\neq 0$. Pela simetria do jogo, o mesmo acontece para o jogador $i$. Note que, se $x_{j,s}>5-6r_i$ teremos $\dot{x}_{i,s}<0$, além disso se $x_{j,s}<5-6r_i$, temos $\dot{x}_{j,s}>0$. Com isso, concluímos que o ponto de equilíbrio dado por $\eqref{ptoEqCela}$ é, de fato, instável.
